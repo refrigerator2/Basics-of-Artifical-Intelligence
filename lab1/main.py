@@ -2,20 +2,17 @@ import numpy as np
 
 
 def neuron(input, weights, bias):
-    res = np.dot(input, weights) + bias
+    res = weights @ input + bias
     return res
 
 
 def neural_network(input_vec, weights):
     vec_len = len(input_vec)
-    weights_rows, weights_cols = weights.shape
+    _, weights_cols = weights.shape
     if vec_len != weights_cols:
         print("Couldn't do this operation: dimensions mismatch")
         return 0
-    res = np.zeros(weights_rows)
-    for i in range(weights_rows):
-        res[i] = neuron(input_vec, weights[i], 0)
-    return res
+    return weights @ input_vec
 
 
 def deep_neural_network(input_vec, weights):
